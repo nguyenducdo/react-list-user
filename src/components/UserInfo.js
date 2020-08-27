@@ -1,7 +1,11 @@
 import React from 'react';
+import {useHistory, useLocation} from 'react-router-dom';
 
 export default function({user, doEdit}) {
-    console.log(user);
+    const history = useHistory();
+    const location = useLocation();
+    console.log("path: ", location.pathname);
+
     return (
         <div className="mt-5" style={{width: 500}}>
             <div className="row mb-3">
@@ -20,7 +24,7 @@ export default function({user, doEdit}) {
             <br/>
             {
                 user.role === 'admin'
-                    ? <a href="/users">List user</a>
+                    ? <button className="btn btn-link px-0" onClick={() => history.push("/users")}>List user</button>
                     : null
             }
         </div>

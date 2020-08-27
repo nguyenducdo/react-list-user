@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
+import {useSelector} from "react-redux";
 
 import UserInfo from "../components/UserInfo";
 import UserInput from "../components/UserInput";
 
-export default function({user}) {
+export default function() {
     const [isEdit, changeEdit] = useState(false);
+
+    const user = useSelector(state => state.User);
 
     return (
         <div className="container mt-5">

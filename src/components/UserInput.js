@@ -1,17 +1,22 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState} from 'react';
+import {useDispatch} from "react-redux";
+import {update} from "../actions/UserAction";
 
 export default function({user, cancelEdit}) {
     const [username, setUsername] = useState(user.username);
     const [password, setPassword] = useState('');
 
-    const onSubmit = useCallback(
-        e => {
-            e.preventDefault();
-            console.log("username: ", username);
-            console.log("password: ", password);
-        },
-        [username, password]
-    );
+    const dispatch = useDispatch();
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        let user = {
+            username,
+            password,
+        }
+        dispatch(update(user));
+        cancelEdit();
+    }
 
     return (
         <div className="mt-5" style={{width: 500}}>
